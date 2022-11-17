@@ -24,12 +24,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.frame = view.bounds
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = UITableViewCell()
+        let labelView = UILabel()
+        labelView.numberOfLines = 10
+        labelView.frame = cell.frame
+        
+        requestJoke(completion: {response in
+            DispatchQueue.main.async {
+                labelView.text = response?.value
+            }
+        }, endPoint: "random")
+        
+        cell.addSubview(labelView)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 100
     }
-    
+ 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50.0
+    }
 }
 

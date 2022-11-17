@@ -22,10 +22,8 @@ func requestJoke(completion: @escaping (Response?) -> Void, endPoint:String) {
     let session = URLSession.shared
     let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
         if (error != nil) {
-            print(error)
+            print("Restart App")
         } else {
-            let httpResponse = response as? HTTPURLResponse
-            print("This code is reached")
             var result:Response?
             if let data = data {
                 do{
