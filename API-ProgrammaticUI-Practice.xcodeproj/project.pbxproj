@@ -19,6 +19,7 @@
 		A7C633DE2926860700808BC8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C633DD2926860700808BC8 /* API.swift */; };
 		A7C633E029268A6C00808BC8 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C633DF29268A6C00808BC8 /* ViewModel.swift */; };
 		A7C633E229268CCB00808BC8 /* DataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C633E129268CCB00808BC8 /* DataStructure.swift */; };
+		A7C633E42926A04300808BC8 /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C633E32926A04300808BC8 /* SearchAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		A7C633DD2926860700808BC8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A7C633DF29268A6C00808BC8 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		A7C633E129268CCB00808BC8 /* DataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructure.swift; sourceTree = "<group>"; };
+		A7C633E32926A04300808BC8 /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				A7C633B129267CD800808BC8 /* ViewController.swift */,
 				A7C633DF29268A6C00808BC8 /* ViewModel.swift */,
 				A7C633DD2926860700808BC8 /* API.swift */,
+				A7C633E32926A04300808BC8 /* SearchAPI.swift */,
 				A7C633E129268CCB00808BC8 /* DataStructure.swift */,
 				A7C633B329267CD800808BC8 /* Main.storyboard */,
 				A7C633B629267CDA00808BC8 /* Assets.xcassets */,
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7C633E029268A6C00808BC8 /* ViewModel.swift in Sources */,
+				A7C633E42926A04300808BC8 /* SearchAPI.swift in Sources */,
 				A7C633B229267CD800808BC8 /* ViewController.swift in Sources */,
 				A7C633AE29267CD800808BC8 /* AppDelegate.swift in Sources */,
 				A7C633E229268CCB00808BC8 /* DataStructure.swift in Sources */,
