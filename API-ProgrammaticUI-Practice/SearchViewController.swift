@@ -61,6 +61,7 @@ class SearchViewController: UIViewController, UITableViewDelegate,UITableViewDat
                 }
             }, searchQuery:search)
         }
+        view.endEditing(true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,4 +80,10 @@ class SearchViewController: UIViewController, UITableViewDelegate,UITableViewDat
         return jokesReturned.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let myMessage = jokesReturned[indexPath.row]
+        let myAlert = UIAlertController(title: "Joke", message: myMessage, preferredStyle: .alert)
+        myAlert.addAction(UIAlertAction(title: "Exit", style: .cancel))
+        present(myAlert,animated: true,completion: nil)
+    }
 }

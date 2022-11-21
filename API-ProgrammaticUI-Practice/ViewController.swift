@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    var jokes:[String] = [String](repeating: "", count: 100)
     let tableView = UITableView()
     let button = UIButton()
     override func viewDidLoad() {
@@ -54,8 +54,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         labelView.frame = cell.frame
         labelView.font = labelView.font.withSize(10)
         requestJoke(completion: {response in
-            DispatchQueue.main.async {
-                labelView.text = response?.value
+            if let joke = response?.value {
+                DispatchQueue.main.async {
+                    labelView.text = joke
+                    print(indexPath.row)
+                    print(self.jokes)
+                    print(joke)
+                    self.jokes[indexPath.row] = joke
+                }
             }
         }, endPoint: "random")
         
@@ -64,15 +70,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+        let myMessage:String = jokes[indexPath.row]
+        let myAlert = UIAlertController(title: "Alert", message: myMessage, preferredStyle: .alert)
+        myAlert.addAction(UIAlertAction(title: "Exit", style: .cancel))
+        present(myAlert,animated: true,completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
     }
  
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50.0
-    }
+  
 }
 
