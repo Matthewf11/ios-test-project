@@ -10,26 +10,49 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let tableView = UITableView()
+    let button = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.addSubview(tableView)
+        
         tableView.delegate = self
         tableView.dataSource = self
+       
+        button.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+        button.backgroundColor = .blue
         
+        view.addSubview(tableView)
+        view.addSubview(button)
+        
+        button.frame.origin.y = 760.0
+        button.setTitle("Search page", for: .normal)
+        button.titleLabel?.textColor = .white
+        
+    }
+    
+    
+    
+    @objc func buttonClicked(sender: UIButton){
+        let svc = SearchViewController()
+        self.present(svc, animated: false)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
+        tableView.frame.size.height = view.bounds.height - 100.0
+        tableView.frame.size.width = view.bounds.width
+        button.frame.size.height = 100.0
+        button.frame.size.width = view.bounds.width
+        
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let labelView = UILabel()
         labelView.numberOfLines = 10
         labelView.frame = cell.frame
-        
+        labelView.font = labelView.font.withSize(10)
         requestJoke(completion: {response in
             DispatchQueue.main.async {
                 labelView.text = response?.value

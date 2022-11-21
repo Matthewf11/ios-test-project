@@ -23,6 +23,7 @@ struct Body : Codable{
     var url:String
     var value:String
 }
+
 func searchAPI(completion: @escaping (SearchResponse?) -> Void, searchQuery:String) {
     let headers = [
         "accept": "application/json",
