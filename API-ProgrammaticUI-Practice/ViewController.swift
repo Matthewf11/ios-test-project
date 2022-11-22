@@ -11,6 +11,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var jokes:[String] = [String](repeating: "", count: 100)
     let tableView = UITableView()
     let button = UIButton()
+    let dictonaryButton = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -18,11 +19,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
        
+        //dictonary button
+        dictonaryButton.addTarget(self, action: #selector(dictinaryButtonClicked(sender:)), for: .touchUpInside)
+        dictonaryButton.backgroundColor = .red
+        
+        //chuck norris button
         button.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
         button.backgroundColor = .blue
         
         view.addSubview(tableView)
         view.addSubview(button)
+        view.addSubview(dictonaryButton)
+        
+        dictonaryButton.frame.origin.y = 760
+        dictonaryButton.setTitle("Dictonary", for: .normal)
+        dictonaryButton.titleLabel?.textColor = .white
         
         button.frame.origin.y = 760.0
         button.setTitle("Search page", for: .normal)
@@ -30,20 +41,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    
+    @objc func dictinaryButtonClicked(sender:UIButton){
+        let dcv = DictionaryViewController()
+        self.present(dcv,animated: true)
+    }
     
     @objc func buttonClicked(sender: UIButton){
         let svc = SearchViewController()
-        self.present(svc, animated: false)
+        self.present(svc, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame.size.height = view.bounds.height - 100.0
         tableView.frame.size.width = view.bounds.width
-        button.frame.size.height = 100.0
-        button.frame.size.width = view.bounds.width
         
+        button.frame.size.height = 100.0
+        button.frame.size.width = view.bounds.width/2
+        
+        dictonaryButton.frame.size.height = 100.0
+        dictonaryButton.frame.size.width = view.bounds.width/2
+        dictonaryButton.frame.origin.x = view.bounds.width/2
     }
     
     
@@ -57,9 +75,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let joke = response?.value {
                 DispatchQueue.main.async {
                     labelView.text = joke
-                    print(indexPath.row)
-                    print(self.jokes)
-                    print(joke)
                     self.jokes[indexPath.row] = joke
                 }
             }
