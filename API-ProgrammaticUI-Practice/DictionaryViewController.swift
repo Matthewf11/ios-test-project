@@ -99,13 +99,13 @@ class DictionaryViewController: UIViewController,UITableViewDelegate,UITableView
             searchButton.heightAnchor.constraint(equalToConstant: 100),
             
             //button and text input constraints
-            queryParameter.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            queryParameter.leadingAnchor.constraint(equalTo: searchButton.trailingAnchor),
+            queryParameter.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            queryParameter.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor),
             queryParameter.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             queryParameter.bottomAnchor.constraint(equalTo: dictionaryResults.topAnchor),
-            searchButton.trailingAnchor.constraint(equalTo: queryParameter.leadingAnchor),
+            searchButton.leadingAnchor.constraint(equalTo: queryParameter.trailingAnchor),
             searchButton.topAnchor.constraint(equalTo: searchButton.topAnchor),
-            searchButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            searchButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             searchButton.bottomAnchor.constraint(equalTo: dictionaryResults.topAnchor)
         ]
         

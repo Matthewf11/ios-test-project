@@ -29,32 +29,60 @@ class SearchViewController: UIViewController, UITableViewDelegate,UITableViewDat
         // Do any additional setup after loading the view.
         searchResults.dataSource = self
         searchResults.delegate = self
-        view.addSubview(searchResults)
-        view.addSubview(searchTextField)
-        view.addSubview(searchButton)
+        searchResults.translatesAutoresizingMaskIntoConstraints = false
         
         searchButton.addTarget(self, action: #selector(searchButtonClicked(sender:)), for: .touchUpInside)
         searchButton.backgroundColor = .red
         searchButton.setTitle("Search", for: .normal)
-        
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
         
         searchTextField.backgroundColor = .lightGray
         searchTextField.placeholder = "Enter your search"
+        searchTextField.translatesAutoresizingMaskIntoConstraints  = false
         
-        
+        view.addSubview(searchResults)
+        view.addSubview(searchTextField)
+        view.addSubview(searchButton)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        searchResults.frame.size.width = view.bounds.width
-        searchResults.frame.size.height = view.bounds.height - 100
-        searchResults.frame.origin.y = view.bounds.origin.y + 100
+        //layout done with frames
+//        searchResults.frame.size.width = view.bounds.width
+//        searchResults.frame.size.height = view.bounds.height - 100
+//        searchResults.frame.origin.y = view.bounds.origin.y + 100
+//
+//        searchTextField.frame.size.width = view.bounds.width - 100
+//        searchTextField.frame.size.height = 100
+//
+//        searchButton.frame.size.width = 100
+//        searchButton.frame.size.height = 100
+//        searchButton.frame.origin.x = view.bounds.width - 100
         
-        searchTextField.frame.size.width = view.bounds.width - 100
-        searchTextField.frame.size.height = 100
+        //layout done with autolayout
+        let constraints = [
+            //search results constraints
+            searchResults.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            searchResults.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            searchResults.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            //Text field and button width and height constraints
+            searchTextField.widthAnchor.constraint(equalToConstant: view.bounds.width-100),
+            searchTextField.heightAnchor.constraint(equalToConstant: 100),
+            searchButton.widthAnchor.constraint(equalToConstant: 100),
+            searchButton.heightAnchor.constraint(equalToConstant: 100),
+            
+            //Text field and button constraints
+            searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            searchButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            searchTextField.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor),
+            searchButton.leadingAnchor.constraint(equalTo: searchTextField.trailingAnchor),
+            searchTextField.bottomAnchor.constraint(equalTo: searchResults.topAnchor),
+            searchButton.bottomAnchor.constraint(equalTo: searchResults.topAnchor)
+        ]
         
-        searchButton.frame.size.width = 100
-        searchButton.frame.size.height = 100
-        searchButton.frame.origin.x = view.bounds.width - 100
+        NSLayoutConstraint.activate(constraints)
     }
     
     @objc func searchButtonClicked(sender: UIButton) {
