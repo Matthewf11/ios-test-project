@@ -32,18 +32,20 @@ class DictionaryViewController: UIViewController,UITableViewDelegate,UITableView
         // Do any additional setup after loading the view.
         dictionaryResults.delegate = self
         dictionaryResults.dataSource = self
+        dictionaryResults.translatesAutoresizingMaskIntoConstraints = false
         
+        queryParameter.backgroundColor = .lightGray
+        queryParameter.placeholder = "Enter your search"
+        queryParameter.translatesAutoresizingMaskIntoConstraints = false
+        
+        searchButton.backgroundColor = .red
+        searchButton.setTitle("Search", for: .normal)
         searchButton.addTarget(self, action: #selector(searchDictonary(sender: )), for: .touchUpInside)
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(dictionaryResults)
         view.addSubview(queryParameter)
         view.addSubview(searchButton)
-        
-        queryParameter.backgroundColor = .lightGray
-        queryParameter.placeholder = "Enter your search"
-        
-        searchButton.backgroundColor = .red
-        searchButton.setTitle("Search", for: .normal)
     }
     
     
@@ -70,16 +72,44 @@ class DictionaryViewController: UIViewController,UITableViewDelegate,UITableView
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        dictionaryResults.frame.size.width = view.bounds.width
-        dictionaryResults.frame.size.height = view.bounds.height-100
-        dictionaryResults.frame.origin.y = view.bounds.origin.y + 100
         
-        queryParameter.frame.size.width = view.bounds.width - 100
-        queryParameter.frame.size.height = 100
-      
-        searchButton.frame.size.height = 100
-        searchButton.frame.size.width = 100
-        searchButton.frame.origin.x = view.bounds.width - 100
+        //subiews done with frames
+//        dictionaryResults.frame.size.width = view.bounds.width
+//        dictionaryResults.frame.size.height = view.bounds.height-100
+//        dictionaryResults.frame.origin.y = view.bounds.origin.y + 100
+//
+//        queryParameter.frame.size.width = view.bounds.width - 100
+//        queryParameter.frame.size.height = 100
+//
+//        searchButton.frame.size.height = 100
+//        searchButton.frame.size.width = 100
+//        searchButton.frame.origin.x = view.bounds.width - 100
+        
+        //subviews done with autolayout
+        let constraints = [
+            //results constraints
+            dictionaryResults.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            dictionaryResults.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            dictionaryResults.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            //width and height constraints for button and text input
+            queryParameter.widthAnchor.constraint(equalToConstant: view.bounds.width - 100),
+            queryParameter.heightAnchor.constraint(equalToConstant: 100),
+            searchButton.widthAnchor.constraint(equalToConstant: 100),
+            searchButton.heightAnchor.constraint(equalToConstant: 100),
+            
+            //button and text input constraints
+            queryParameter.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            queryParameter.leadingAnchor.constraint(equalTo: searchButton.trailingAnchor),
+            queryParameter.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            queryParameter.bottomAnchor.constraint(equalTo: dictionaryResults.topAnchor),
+            searchButton.trailingAnchor.constraint(equalTo: queryParameter.leadingAnchor),
+            searchButton.topAnchor.constraint(equalTo: searchButton.topAnchor),
+            searchButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            searchButton.bottomAnchor.constraint(equalTo: dictionaryResults.topAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
