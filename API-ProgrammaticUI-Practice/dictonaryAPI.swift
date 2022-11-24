@@ -7,11 +7,9 @@
 
 import Foundation
 
-
 protocol DictionaryServicable {
     func queryDictonary(completion: @escaping (Definitions?) -> Void, query:String)
 }
-
 
 class DictionaryService:DictionaryServicable{
     func queryDictonary(completion: @escaping (Definitions?) -> Void, query:String) {
@@ -49,6 +47,7 @@ class DictionaryService:DictionaryServicable{
         dataTask.resume()
     }
 }
+
 class MockDictionaryService:DictionaryServicable {
     func queryDictonary(completion: @escaping (Definitions?) -> Void, query:String){
         var result:Definitions?

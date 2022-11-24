@@ -25,13 +25,6 @@ final class API_ProgrammaticUI_PracticeTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
         
-        //test that array is empty before search
-        let svc = SearchViewController()
-        XCTAssertTrue(svc.jokesReturned.count == 0)
-        
-        //tests that joke array has size 100
-        let vc = ViewController()
-        XCTAssertTrue(vc.jokes.count == 100)
         
         
     }

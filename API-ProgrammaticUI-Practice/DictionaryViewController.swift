@@ -44,9 +44,8 @@ class DictionaryViewController: UIViewController,UITableViewDelegate,UITableView
         
         searchButton.backgroundColor = .red
         searchButton.setTitle("Search", for: .normal)
-     
-        
     }
+    
     
     @objc func searchDictonary(sender:UIButton) {
         dictionaryResponse = []

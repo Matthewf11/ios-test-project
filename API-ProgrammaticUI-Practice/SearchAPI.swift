@@ -13,6 +13,7 @@ import Foundation
 protocol ChuckSearchServicable {
     func searchAPI(completion: @escaping (SearchResponse?) -> Void, searchQuery:String)
 }
+
 class ChuckSearchService : ChuckSearchServicable {
     func searchAPI(completion: @escaping (SearchResponse?) -> Void, searchQuery:String) {
         let headers = [
