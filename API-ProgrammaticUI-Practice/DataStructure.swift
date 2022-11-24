@@ -29,7 +29,7 @@ struct Definition:Codable {
     var definition: String?
     var permalink:String?
     var thumbs_up:Int?
-    var sound_urls:[String?]
+    //var sound_urls:[String?]
     var author:String?
     var word:String?
     var defid:Int?

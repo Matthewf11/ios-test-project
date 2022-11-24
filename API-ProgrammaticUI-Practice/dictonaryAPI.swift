@@ -50,15 +50,15 @@ class DictionaryService:DictionaryServicable{
 
 class MockDictionaryService:DictionaryServicable {
     func queryDictonary(completion: @escaping (Definitions?) -> Void, query:String){
-        var result:Definitions?
+//        var result:Definitions?
         
-        result?.list = [Definition(thumbs_up: 10, sound_urls: [""]),
-                  Definition(thumbs_up: 20, sound_urls: [""]),
-                  Definition(thumbs_up: 30, sound_urls: [""]),
-                  Definition(thumbs_up: 40, sound_urls: [""]),
-                  Definition(thumbs_up: 50, sound_urls: [""]),
-                  Definition(thumbs_up: 60, sound_urls: [""]),
-                  Definition(thumbs_up: 70, sound_urls: [""])]
-        completion(result)
+//        result?.list = [Definition(thumbs_up: 10, sound_urls: [""]),
+//                  Definition(thumbs_up: 20, sound_urls: [""]),
+//                  Definition(thumbs_up: 30, sound_urls: [""]),
+//                  Definition(thumbs_up: 40, sound_urls: [""]),
+//                  Definition(thumbs_up: 50, sound_urls: [""]),
+//                  Definition(thumbs_up: 60, sound_urls: [""]),
+//                  Definition(thumbs_up: 70, sound_urls: [""])]
+//        completion(result)
     }
 }

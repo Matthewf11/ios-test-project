@@ -48,9 +48,9 @@ class JokeService:JokeServicable{
 
 class MockJokeService:JokeServicable{
     func requestJoke(completion: @escaping (Response?) -> Void, endPoint: String) {
-        var result:Response?
+        //let result:Response?
         
-        completion(result)
+       // completion(result)
     }
 }
 

@@ -21,27 +21,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
-       
+        tableView.backgroundColor = .lightGray
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         //dictonary button
         dictonaryButton.addTarget(self, action: #selector(dictinaryButtonClicked(sender:)), for: .touchUpInside)
         dictonaryButton.backgroundColor = .red
+        dictonaryButton.setTitle("Dictonary", for: .normal)
+        dictonaryButton.titleLabel?.textColor = .white
+        dictonaryButton.translatesAutoresizingMaskIntoConstraints = false
         
         //chuck norris button
         button.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
         button.backgroundColor = .blue
+        button.setTitle("Search page", for: .normal)
+        button.titleLabel?.textColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(tableView)
         view.addSubview(button)
         view.addSubview(dictonaryButton)
-        
-        dictonaryButton.frame.origin.y = 760
-        dictonaryButton.setTitle("Dictonary", for: .normal)
-        dictonaryButton.titleLabel?.textColor = .white
-        
-        button.frame.origin.y = 760.0
-        button.setTitle("Search page", for: .normal)
-        button.titleLabel?.textColor = .white
-        
     }
     
     @objc func dictinaryButtonClicked(sender:UIButton){
@@ -58,15 +57,49 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.frame.size.height = view.bounds.height - 100.0
-        tableView.frame.size.width = view.bounds.width
         
-        button.frame.size.height = 100.0
-        button.frame.size.width = view.bounds.width/2
+        //Laying out the subviews using frames
+//        tableView.frame.size.height = view.bounds.height - 100.0
+//        tableView.frame.size.width = view.bounds.width
+//
+//        button.frame.size.height = 100.0
+//        button.frame.size.width = view.bounds.width/2
+//        button.frame.origin.y = 760.0
+//
+//        dictonaryButton.frame.size.height = 100.0
+//        dictonaryButton.frame.size.width = view.bounds.width/2
+//        dictonaryButton.frame.origin.x = view.bounds.width/2
+//        dictonaryButton.frame.origin.y = 760
         
-        dictonaryButton.frame.size.height = 100.0
-        dictonaryButton.frame.size.width = view.bounds.width/2
-        dictonaryButton.frame.origin.x = view.bounds.width/2
+        //laying out the subviews using auto layout
+        var constraints = [
+            //table view constraints
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            
+            //buttons width and height constraints
+            button.widthAnchor.constraint(equalToConstant: view.bounds.width/2),
+            dictonaryButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2),
+            button.heightAnchor.constraint(equalToConstant: 50),
+            dictonaryButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            //buttons constraints
+            button.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            dictonaryButton.topAnchor.constraint(equalTo:tableView.bottomAnchor),
+            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            dictonaryButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            button.leadingAnchor.constraint(equalTo: dictonaryButton.trailingAnchor),
+            dictonaryButton.trailingAnchor.constraint(equalTo: button.leadingAnchor),
+           
+            button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            dictonaryButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
+     
+        ]
+        
+      
+        NSLayoutConstraint.activate(constraints)
     }
     
     

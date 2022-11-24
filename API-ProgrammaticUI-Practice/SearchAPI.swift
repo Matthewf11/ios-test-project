@@ -33,11 +33,8 @@ class ChuckSearchService : ChuckSearchServicable {
             if (error != nil) {
                 print(error)
             } else {
-                let httpResponse = response as? HTTPURLResponse
-                
+            
                 var result:SearchResponse?
-                
-                print(data)
                 if let data = data {
                     do{
                         result = try JSONDecoder().decode(SearchResponse.self, from: data)
