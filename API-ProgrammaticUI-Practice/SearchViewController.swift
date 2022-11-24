@@ -13,6 +13,17 @@ class SearchViewController: UIViewController, UITableViewDelegate,UITableViewDat
     let searchResults = UITableView()
     let searchButton = UIButton()
     var jokesReturned:[String] = []
+    var chuckSearchService:ChuckSearchServicable
+    init(chuckSearchService:ChuckSearchServicable){
+        self.chuckSearchService = chuckSearchService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+      fatalError("init(coder) not implemented")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -49,19 +60,24 @@ class SearchViewController: UIViewController, UITableViewDelegate,UITableViewDat
     @objc func searchButtonClicked(sender: UIButton) {
         jokesReturned = []
         if let search = searchTextField.text{
-            searchAPI(completion: {response in
+            chuckSearchService.searchAPI(completion: {response in
                 if let jokes = response?.result{
-                    for joke in jokes {
-                        self.jokesReturned.append(joke.value)
-                    }
-                    print(self.jokesReturned)
                     DispatchQueue.main.async {
-                        self.searchResults.reloadData()
+                        self.handleResponse(jokes: jokes)
                     }
                 }
             }, searchQuery:search)
         }
         view.endEditing(true)
+    }
+    
+    func handleResponse(jokes:[Body]){
+        for joke in jokes{
+            if let jokeValue = joke.value{
+                jokesReturned.append(jokeValue)
+            }
+        }
+        searchResults.reloadData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

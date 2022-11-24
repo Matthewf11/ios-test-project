@@ -12,6 +12,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let tableView = UITableView()
     let button = UIButton()
     let dictonaryButton = UIButton()
+    var jokeService:JokeServicable = JokeService()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -42,12 +45,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func dictinaryButtonClicked(sender:UIButton){
-        let dcv = DictionaryViewController()
+        let dictionaryService = DictionaryService()
+        let dcv = DictionaryViewController(dictionaryService: dictionaryService)
         self.present(dcv,animated: true)
     }
     
     @objc func buttonClicked(sender: UIButton){
-        let svc = SearchViewController()
+        let chuckSearchService = ChuckSearchService()
+        let svc = SearchViewController(chuckSearchService: chuckSearchService)
         self.present(svc, animated: true)
     }
     
@@ -71,7 +76,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         labelView.numberOfLines = 10
         labelView.frame = cell.frame
         labelView.font = labelView.font.withSize(10)
-        requestJoke(completion: {response in
+        jokeService.requestJoke(completion: {response in
             if let joke = response?.value {
                 DispatchQueue.main.async {
                     labelView.text = joke

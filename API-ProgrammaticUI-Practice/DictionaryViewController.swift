@@ -12,6 +12,20 @@ class DictionaryViewController: UIViewController,UITableViewDelegate,UITableView
     var dictionaryResults = UITableView()
     var queryParameter = UITextField()
     var searchButton = UIButton()
+    var dictionaryService:DictionaryServicable
+    
+    init(dictionaryService:DictionaryServicable) {
+        self.dictionaryService = dictionaryService
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder) has not been implemented")
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,19 +51,22 @@ class DictionaryViewController: UIViewController,UITableViewDelegate,UITableView
     @objc func searchDictonary(sender:UIButton) {
         dictionaryResponse = []
         if let query = queryParameter.text {
-            queryDictonary(completion: {
+            dictionaryService.queryDictonary(completion: {
                 response in
-                if let response = response{
-                    
-                    self.dictionaryResponse = response.list.sorted(using: KeyPathComparator(\.thumbs_up,order: .reverse))
-                    //refresh UI
-                    DispatchQueue.main.async {
-                        self.dictionaryResults.reloadData()
-                    }
+                DispatchQueue.main.async {
+                    self.handleResponse(response: response)
                 }
             }, query: query)
         }
         view.endEditing(true)
+    }
+    
+    func handleResponse(response:Definitions?){
+        if let response = response{
+            dictionaryResponse = response.list.sorted(using: KeyPathComparator(\.thumbs_up,order: .reverse))
+            //refresh UI
+            dictionaryResults.reloadData()
+        }
     }
     
     override func viewDidLayoutSubviews() {

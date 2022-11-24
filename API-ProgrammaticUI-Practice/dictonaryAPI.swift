@@ -7,30 +7,13 @@
 
 import Foundation
 
-struct Definitions:Codable {
-    var list : [Definition]
-}
 
-struct Definition:Codable {
-    var definition: String?
-    var permalink:String?
-    var thumbs_up:Int?
-    var sound_urls:[String?]
-    var author:String?
-    var word:String?
-    var defid:Int?
-    var currentVote:String?
-    var written_on:String?
-    var example:String?
-    var thumbs_down:Int?
-}
-
-protocol DictonaryResponse {
+protocol DictionaryServicable {
     func queryDictonary(completion: @escaping (Definitions?) -> Void, query:String)
 }
 
 
-class DictonaryApi:DictonaryResponse{
+class DictionaryService:DictionaryServicable{
     func queryDictonary(completion: @escaping (Definitions?) -> Void, query:String) {
         let headers = [
             "X-RapidAPI-Key": "0a7e318632msh40a8c872dd77589p1efba8jsn65809613d804",
@@ -66,7 +49,7 @@ class DictonaryApi:DictonaryResponse{
         dataTask.resume()
     }
 }
-class MockDictionaryAPI:DictonaryResponse {
+class MockDictionaryService:DictionaryServicable {
     func queryDictonary(completion: @escaping (Definitions?) -> Void, query:String){
         var result:Definitions?
         
