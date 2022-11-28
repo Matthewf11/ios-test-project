@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let tableView = UITableView()
     let button = UIButton()
     let dictonaryButton = UIButton()
+    let animatedSplashScreen = UIImageView()
     var jokeService:JokeServicable = JokeService()
     
     
@@ -19,6 +20,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        
+        
+        
+        //tableView setUp
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .lightGray
@@ -38,9 +43,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         button.titleLabel?.textColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(animatedSplashScreen)
         view.addSubview(tableView)
         view.addSubview(button)
         view.addSubview(dictonaryButton)
+        
+        //animating stuff?
+//        var animationImages: [UIImage]?
+//        animationImages?.append(UIImage(named: "1.png")!)
+        var animationImages:[UIImage]? = [UIImage(named: "1.png")!,UIImage(named: "2.png")!,UIImage(named: "3.png")!,UIImage(named: "4.png")!,UIImage(named: "5.png")!]
+        animatedSplashScreen.animationImages = animationImages
+        animatedSplashScreen.animationRepeatCount = 1
+        animatedSplashScreen.animationDuration = 5
+        animatedSplashScreen.startAnimating()
+        self.perform(#selector(hideAnimation(sender:)), with: animatedSplashScreen, afterDelay: 5.0)
+    }
+    
+    @objc func hideAnimation(sender:UIImageView){
+        sender.removeFromSuperview()
     }
     
     @objc func dictinaryButtonClicked(sender:UIButton){
@@ -98,8 +118,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      
         ]
         
-      
         NSLayoutConstraint.activate(constraints)
+        //animated Splash screen setup
+        animatedSplashScreen.frame = view.safeAreaLayoutGuide.layoutFrame
+        view.bringSubviewToFront(animatedSplashScreen)
     }
     
     
