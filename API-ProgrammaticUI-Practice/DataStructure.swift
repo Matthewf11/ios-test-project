@@ -22,6 +22,9 @@ struct Body : Codable{
 
 //For urban dictionary search
 struct Definitions:Codable {
+    init(list:[Definition]){
+        self.list = list
+    }
     var list : [Definition]
 }
 

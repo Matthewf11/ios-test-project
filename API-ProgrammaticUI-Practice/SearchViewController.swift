@@ -94,9 +94,21 @@ class SearchViewController: UIViewController, UITableViewDelegate,UITableViewDat
                         self.handleResponse(jokes: jokes)
                     }
                 }
-            }, searchQuery:search)
+            }, searchQuery:handleQuery(query:search))
         }
         view.endEditing(true)
+    }
+    
+    func handleQuery(query:String) -> String {
+        var handledQuery:String = ""
+        for i in query {
+            if i == " " {
+                handledQuery.append("%20")
+            } else {
+                handledQuery.append(i)
+            }
+        }
+        return handledQuery
     }
     
     func handleResponse(jokes:[Body]){

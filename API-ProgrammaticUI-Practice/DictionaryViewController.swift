@@ -57,9 +57,22 @@ class DictionaryViewController: UIViewController,UITableViewDelegate,UITableView
                 DispatchQueue.main.async {
                     self.handleResponse(response: response)
                 }
-            }, query: query)
+            }, query: handleQuery(query: query))
         }
         view.endEditing(true)
+    }
+    
+    
+    func handleQuery(query:String) -> String {
+        var handledQuery:String = ""
+        for i in query {
+            if i == " " {
+                handledQuery.append("%20")
+            } else {
+                handledQuery.append(i)
+            }
+        }
+        return handledQuery
     }
     
     func handleResponse(response:Definitions?){
