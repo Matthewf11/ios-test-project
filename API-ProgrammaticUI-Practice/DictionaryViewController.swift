@@ -17,7 +17,6 @@ class DictionaryViewController: UIViewController,UITableViewDelegate,UITableView
     init(dictionaryService:DictionaryServicable) {
         self.dictionaryService = dictionaryService
         super.init(nibName: nil, bundle: nil)
-        
     }
      
     required init?(coder: NSCoder) {
@@ -37,6 +36,7 @@ class DictionaryViewController: UIViewController,UITableViewDelegate,UITableView
         queryParameter.backgroundColor = .lightGray
         queryParameter.placeholder = "Enter your search"
         queryParameter.translatesAutoresizingMaskIntoConstraints = false
+        queryParameter.accessibilityIdentifier = "queryParameter"
         
         searchButton.backgroundColor = .red
         searchButton.setTitle("Search", for: .normal)

@@ -32,7 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //dictonary button
         dictonaryButton.addTarget(self, action: #selector(dictinaryButtonClicked(sender:)), for: .touchUpInside)
         dictonaryButton.backgroundColor = .red
-        dictonaryButton.setTitle("Dictonary", for: .normal)
+        dictonaryButton.setTitle("Dictionary", for: .normal)
         dictonaryButton.titleLabel?.textColor = .white
         dictonaryButton.translatesAutoresizingMaskIntoConstraints = false
         
