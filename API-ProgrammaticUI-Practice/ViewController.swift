@@ -11,7 +11,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var jokes:[String] = [String](repeating: "", count: 100)
     let tableView = UITableView()
     let button = UIButton()
-    let dictonaryButton = UIButton()
+    let dictionaryButton = UIButton()
     let animatedSplashScreen = UIImageView()
     var jokeService:JokeServicable = JokeService()
     
@@ -19,22 +19,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        
-        
-        
         //tableView setUp
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .lightGray
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.accessibilityIdentifier = "tableView"
         
         //dictonary button
-        dictonaryButton.addTarget(self, action: #selector(dictinaryButtonClicked(sender:)), for: .touchUpInside)
-        dictonaryButton.backgroundColor = .red
-        dictonaryButton.setTitle("Dictionary", for: .normal)
-        dictonaryButton.titleLabel?.textColor = .white
-        dictonaryButton.translatesAutoresizingMaskIntoConstraints = false
+        dictionaryButton.addTarget(self, action: #selector(dictinaryButtonClicked(sender:)), for: .touchUpInside)
+        dictionaryButton.backgroundColor = .red
+        dictionaryButton.setTitle("Dictionary", for: .normal)
+        dictionaryButton.titleLabel?.textColor = .white
+        dictionaryButton.translatesAutoresizingMaskIntoConstraints = false
+        dictionaryButton.accessibilityIdentifier = "Dictionary"
         
         //chuck norris button
         button.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
@@ -42,11 +40,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         button.setTitle("Search page", for: .normal)
         button.titleLabel?.textColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "JokeSearch"
         
         view.addSubview(animatedSplashScreen)
         view.addSubview(tableView)
         view.addSubview(button)
-        view.addSubview(dictonaryButton)
+        view.addSubview(dictionaryButton)
         
         //animating stuff?
 //        var animationImages: [UIImage]?
@@ -54,7 +53,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var animationImages:[UIImage]? = [UIImage(named: "1.png")!,UIImage(named: "2.png")!,UIImage(named: "3.png")!,UIImage(named: "4.png")!,UIImage(named: "5.png")!]
         animatedSplashScreen.animationImages = animationImages
         animatedSplashScreen.animationRepeatCount = 1
-        animatedSplashScreen.animationDuration = 5
+        animatedSplashScreen.animationDuration = 3
         animatedSplashScreen.startAnimating()
         self.perform(#selector(hideAnimation(sender:)), with: animatedSplashScreen, afterDelay: 5.0)
     }
@@ -100,21 +99,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             //buttons width and height constraints
             button.widthAnchor.constraint(equalToConstant: view.bounds.width/2),
-            dictonaryButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2),
+            dictionaryButton.widthAnchor.constraint(equalToConstant: view.bounds.width/2),
             button.heightAnchor.constraint(equalToConstant: 50),
-            dictonaryButton.heightAnchor.constraint(equalToConstant: 50),
+            dictionaryButton.heightAnchor.constraint(equalToConstant: 50),
             
             //buttons constraints
             button.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            dictonaryButton.topAnchor.constraint(equalTo:tableView.bottomAnchor),
+            dictionaryButton.topAnchor.constraint(equalTo:tableView.bottomAnchor),
             button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            dictonaryButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            dictionaryButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            button.leadingAnchor.constraint(equalTo: dictonaryButton.trailingAnchor),
-            dictonaryButton.trailingAnchor.constraint(equalTo: button.leadingAnchor),
+            button.leadingAnchor.constraint(equalTo: dictionaryButton.trailingAnchor),
+            dictionaryButton.trailingAnchor.constraint(equalTo: button.leadingAnchor),
            
             button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            dictonaryButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
+            dictionaryButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
      
         ]
         

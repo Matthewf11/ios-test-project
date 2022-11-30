@@ -30,15 +30,18 @@ class SearchViewController: UIViewController, UITableViewDelegate,UITableViewDat
         searchResults.dataSource = self
         searchResults.delegate = self
         searchResults.translatesAutoresizingMaskIntoConstraints = false
+        searchResults.accessibilityIdentifier = "SearchResults"
         
         searchButton.addTarget(self, action: #selector(searchButtonClicked(sender:)), for: .touchUpInside)
         searchButton.backgroundColor = .red
         searchButton.setTitle("Search", for: .normal)
         searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.accessibilityIdentifier = "SearchButton"
         
         searchTextField.backgroundColor = .lightGray
         searchTextField.placeholder = "Enter your search"
         searchTextField.translatesAutoresizingMaskIntoConstraints  = false
+        searchTextField.accessibilityIdentifier = "SearchTextField"
         
         view.addSubview(searchResults)
         view.addSubview(searchTextField)

@@ -32,6 +32,7 @@ class DictionaryViewController: UIViewController,UITableViewDelegate,UITableView
         dictionaryResults.delegate = self
         dictionaryResults.dataSource = self
         dictionaryResults.translatesAutoresizingMaskIntoConstraints = false
+        dictionaryResults.accessibilityIdentifier = "dictionaryResults"
         
         queryParameter.backgroundColor = .lightGray
         queryParameter.placeholder = "Enter your search"
@@ -42,6 +43,7 @@ class DictionaryViewController: UIViewController,UITableViewDelegate,UITableView
         searchButton.setTitle("Search", for: .normal)
         searchButton.addTarget(self, action: #selector(searchDictonary(sender: )), for: .touchUpInside)
         searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.accessibilityIdentifier = "SearchButton"
         
         view.addSubview(dictionaryResults)
         view.addSubview(queryParameter)
