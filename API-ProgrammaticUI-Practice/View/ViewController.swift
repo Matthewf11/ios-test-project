@@ -53,7 +53,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var animationImages:[UIImage]? = [UIImage(named: "1.png")!,UIImage(named: "2.png")!,UIImage(named: "3.png")!,UIImage(named: "4.png")!,UIImage(named: "5.png")!]
         animatedSplashScreen.animationImages = animationImages
         animatedSplashScreen.animationRepeatCount = 1
-        animatedSplashScreen.animationDuration = 3
+        animatedSplashScreen.animationDuration = 1.5
         animatedSplashScreen.startAnimating()
         self.perform(#selector(hideAnimation(sender:)), with: animatedSplashScreen, afterDelay: 5.0)
     }

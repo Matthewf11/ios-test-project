@@ -33,14 +33,10 @@ final class API_ProgrammaticUI_PracticeTests: XCTestCase {
             Definition(thumbs_up: 3202),
             Definition(thumbs_up: 22220)
         ])
-        
- 
-        
+
         dvc.handleResponse(response: response)
         let actualResult = dvc.dictionaryResponse.map{$0.thumbs_up}
         let expectedResult = [22220,3202,902,430,100]
-        
-        
         
         XCTAssertEqual(actualResult, expectedResult)
     }

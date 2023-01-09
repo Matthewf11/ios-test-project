@@ -33,8 +33,16 @@ final class API_ProgrammaticUI_PracticeUITests: XCTestCase {
         print(app.tables["dictionaryResults"].cells.count)
         sleep(2)
         XCTAssert(app.tables["dictionaryResults"].cells.count == 10)
+        app.swipeDown(velocity: XCUIGestureVelocity.fast)
+        app.buttons["JokeSearch"].tap()
+        app.textFields["SearchTextField"].tap()
+        app.textFields["SearchTextField"].typeText("race car")
+        app.buttons["SearchButton"].tap()
+        sleep(2)
+        XCTAssert(app.tables["SearchResults"].cells.count == 1)
     }
-
+    
+    
     func testApiAndSearchApi() throws {
         // UI tests must launch the application that they test.
         app.launch()
@@ -54,6 +62,7 @@ final class API_ProgrammaticUI_PracticeUITests: XCTestCase {
         app.textFields["SearchTextField"].tap()
         app.textFields["SearchTextField"].typeText("Car")
         app.buttons["SearchButton"].tap()
+        sleep(2)
         XCTAssert(app.tables["SearchResults"].cells.count == 308)
     }
 
